@@ -1,10 +1,3 @@
-# KTX: a QuakeWorld server modification
-![KTX Logo](https://raw.githubusercontent.com/QW-Group/ktx/master/resources/logo/ktx.png)
-
-**[KTX][ktx]** (Kombat Teams eXtreme) is a popular **QuakeWorld** server modification, adding numerous features to the core features of the server.
-
-Although it had been developed to be **Quakeworld** server agnostic, it has over the years been developed very close to **[MVDSV][mvdsv]** to which it has become an extent, thus compatibility with other **Quakeworld** servers might not have been maintained.
-
 ## What the fork is this?
 
 This is a fully vibe-coded implementation of a new KTX spawn mode that ignores the built in spawn points and generates random ones on match start.  
@@ -31,6 +24,13 @@ For a ready-to-use example config, see [resources/example-configs/ktx/ktx_random
 | `k_spw_rnd_min_distance` | Minimum spacing between generated random spawn points. Raise it if you want the pool itself to be spread out more physically. |
 | `k_spw_rnd_area_mode` | Soft anti-repeat rule for consecutive spawns. `0` disables the bias, `1` prefers spots farther from your last random spawn origin, and `2` prefers spots associated with a different nearest authored deathmatch-spawn area. |
 | `k_spw_rnd_spread` | Strength of the area bias. `0` turns it off, `1` is low, `2` is medium, and `3` is high. Higher values make repeat spawns in the same area less likely without turning the rule into a hard ban. |
+
+# KTX: a QuakeWorld server modification
+![KTX Logo](https://raw.githubusercontent.com/QW-Group/ktx/master/resources/logo/ktx.png)
+
+**[KTX][ktx]** (Kombat Teams eXtreme) is a popular **QuakeWorld** server modification, adding numerous features to the core features of the server.
+
+Although it had been developed to be **Quakeworld** server agnostic, it has over the years been developed very close to **[MVDSV][mvdsv]** to which it has become an extent, thus compatibility with other **Quakeworld** servers might not have been maintained.
 
 ## Getting Started
 
