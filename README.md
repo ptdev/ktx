@@ -5,9 +5,11 @@
 
 Although it had been developed to be **Quakeworld** server agnostic, it has over the years been developed very close to **[MVDSV][mvdsv]** to which it has become an extent, thus compatibility with other **Quakeworld** servers might not have been maintained.
 
-## What This Repo Is
+## What the fork is this?
 
-KTX is the server-side gameplay module for **QuakeWorld**, most commonly used with **[MVDSV][mvdsv]**. It owns match flow, respawn rules, admin commands, bots, stats/logging, and mode-specific gameplay such as duel, teamplay, CTF, race, and arena variants.
+This is a fully vibe-coded implementation of a new KTX spawn mode that ignores the built in spawn points and generates random ones on match start.  
+
+These two lines are the only things I typed, everything else by GPT 5.4 so no warranties whatsoever. It worked on my machine! Have fun :)
 
 ## Random Surface Respawns
 
