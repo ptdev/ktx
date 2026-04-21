@@ -202,7 +202,7 @@ intptr_t VISIBILITY_VISIBLE vmMain(
 			self->last_rune = "setme";
 			self->classname = ""; // at least empty classname
 			self->connect_time = g_globalvars.time;
-			self->k_lastspawn = world; // set safe value
+			RandomSpawnResetClient(self);
 			self->k_msgcount = g_globalvars.time;
 
 			self->wreg = wregs[(int)(self - world) - 1];

@@ -1255,6 +1255,13 @@ void StartMatch(void)
 	match_start_time = g_globalvars.time;
 	g_matchstarttime = (int)(g_globalvars.time * 1000);
 	match_in_progress = 2;
+	RandomSpawnPrepareMatch();
+
+	if (SpawnShowStatus() == SPAWN_SHOW_MATCH)
+	{
+		HideSpawnPoints();
+		ShowSpawnPoints();
+	}
 
 	// Disable berzerk at start
 	k_berzerk = 0;

@@ -5,6 +5,31 @@
 
 Although it had been developed to be **Quakeworld** server agnostic, it has over the years been developed very close to **[MVDSV][mvdsv]** to which it has become an extent, thus compatibility with other **Quakeworld** servers might not have been maintained.
 
+## What This Repo Is
+
+KTX is the server-side gameplay module for **QuakeWorld**, most commonly used with **[MVDSV][mvdsv]**. It owns match flow, respawn rules, admin commands, bots, stats/logging, and mode-specific gameplay such as duel, teamplay, CTF, race, and arena variants.
+
+## Random Surface Respawns
+
+Setting `k_spw` to `5` enables the random surface respawn mode for supported duel and teamplay games. Instead of respawning only on the map's authored deathmatch spawn entities, KTX builds a pool of valid floor positions at match start and spawns players from that generated pool.
+
+The generator only keeps points where the player hull fits and where the spot is usable in normal play. If a map cannot produce enough safe points, KTX automatically falls back to normal deathmatch spawns instead of leaving the server in a broken state.
+
+For a ready-to-use example config, see [resources/example-configs/ktx/ktx_random_respawns.cfg](resources/example-configs/ktx/ktx_random_respawns.cfg).
+
+### Random Respawn Cvars
+
+| Cvar | Description |
+| --- | --- |
+| `k_spw` | Set this to `5` to enable random surface respawns. |
+| `k_spw_rnd_min_points` | Minimum number of valid generated points required before random surface respawns stay enabled on the current map. If generation cannot reach this number, KTX falls back to normal deathmatch spawns. |
+| `k_spw_rnd_target_count` | Exact pool size to aim for. Set it to `0` to let KTX choose automatically from the map's original deathmatch spawn count. |
+| `k_spw_rnd_target_scale` | Auto-scaling multiplier used when `k_spw_rnd_target_count` is `0`. Higher values create a larger random spawn pool relative to the map's original spawn count. |
+| `k_spw_rnd_attempts_per_point` | How hard the generator searches for valid spawn locations. Higher values improve coverage on awkward maps, but also increase match-start preparation work. |
+| `k_spw_rnd_min_distance` | Minimum spacing between generated random spawn points. Raise it if you want the pool itself to be spread out more physically. |
+| `k_spw_rnd_area_mode` | Soft anti-repeat rule for consecutive spawns. `0` disables the bias, `1` prefers spots farther from your last random spawn origin, and `2` prefers spots associated with a different nearest authored deathmatch-spawn area. |
+| `k_spw_rnd_spread` | Strength of the area bias. `0` turns it off, `1` is low, `2` is medium, and `3` is high. Higher values make repeat spawns in the same area less likely without turning the rule into a hard ban. |
+
 ## Getting Started
 
 The following instructions will help you get **[KTX][ktx]** installed on a running **[MVDSV][mvdsv]** server using prebuilt binaries. Details on how to compile your own **[KTX][ktx]** binary will also be included to match specific architectures or for development purposes.

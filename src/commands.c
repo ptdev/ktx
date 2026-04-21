@@ -2666,14 +2666,14 @@ void ReportMe(void)
 
 void ToggleRespawns(void)
 {
-	int k_spw = bound(-1, cvar("k_spw"), 4);
+	int k_spw = bound(-1, cvar("k_spw"), 5);
 
 	if (match_in_progress)
 	{
 		return;
 	}
 
-	if (++k_spw > 4)
+	if (++k_spw > 5)
 	{
 		k_spw = -1;
 	}
@@ -4787,6 +4787,13 @@ void UserMode(float umode)
 	trap_readcmd(common_um_init, buf, sizeof(buf));
 	G_cprint("%s", buf);
 
+	if (!strnull(cvar_string("_k_spw_default")))
+	{
+		// Let the server config choose the generic respawn mode, then allow the
+		// selected usermode or usermode config files to override it when needed.
+		cvar_fset("k_spw", cvar("_k_spw_default"));
+	}
+
 	trap_readcmd(um_list[(int)umode].initstring, buf, sizeof(buf));
 	G_cprint("%s", buf);
 
@@ -4862,6 +4869,10 @@ void execute_rules_reset(void)
 		trap_readcmd(va("exec %s\n", cfg_name), buf, sizeof(buf));
 		G_cprint("%s", buf);
 	}
+
+	// Capture the admin-configured generic respawn mode before UserMode applies
+	// its shared defaults during the reset/bootstrap path.
+	cvar_fset("_k_spw_default", cvar("k_spw"));
 
 	G_cprint("\n");
 

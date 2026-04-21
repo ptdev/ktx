@@ -302,6 +302,8 @@ void SpectatorImpulseCommand(void)
 	}
 	else if (self->s.v.impulse == 1)
 	{
+		char *spawnname = ActiveDeathmatchSpawnClassname();
+
 		// teleport the spectator to the next spawn point
 		// note that if the spectator is tracking, this doesn't do much
 		goal = PROG_TO_EDICT(self->s.v.goalentity);
@@ -316,11 +318,11 @@ void SpectatorImpulseCommand(void)
 			return;
 		}
 
-		goal = find(goal, FOFCLSN, "info_player_deathmatch");
+		goal = find(goal, FOFCLSN, spawnname);
 
 		if (!goal)
 		{
-			goal = find(world, FOFCLSN, "info_player_deathmatch");
+			goal = find(world, FOFCLSN, spawnname);
 		}
 
 		if (goal)

@@ -112,6 +112,7 @@ set(SRC_COMMON
 	"${DIR_SRC}/sp_demon.c"
 	"${DIR_SRC}/sp_dog.c"
 	"${DIR_SRC}/spectate.c"
+	"${DIR_SRC}/spawn_random.c"
 	"${DIR_SRC}/sp_enforcer.c"
 	"${DIR_SRC}/sp_fish.c"
 	"${DIR_SRC}/sp_hknight.c"

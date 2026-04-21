@@ -521,6 +521,11 @@ void BothPostThink(void); // <- called for player and spec
 void PlayerPostThink(void);
 qbool PlayerCanPause(gedict_t *p);
 void SuperDamageSound(void);
+void RandomSpawnReset(void);
+void RandomSpawnResetClient(gedict_t *player);
+void RandomSpawnPrepareMatch(void);
+char* ActiveDeathmatchSpawnClassname(void);
+gedict_t* SelectDeathmatchSpawnPoint(void);
 
 char *Spawn_GetModel(void);
 gedict_t* SelectSpawnPoint(char *spawnname);

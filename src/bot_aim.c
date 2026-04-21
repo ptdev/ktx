@@ -406,10 +406,12 @@ static void BotsAimAtFloor(gedict_t *self, vec3_t rel_pos, float rel_dist)
 
 static void FireAtSpawnPoint(gedict_t *self)
 {
+	char *spawnname = ActiveDeathmatchSpawnClassname();
 	gedict_t *resp;
+
 	for (resp = world; (resp = trap_findradius(resp, self->s.v.origin, 1000));)
 	{
-		if (streq(resp->classname, "info_player_deathmatch"))
+		if (streq(resp->classname, spawnname))
 		{
 			vec3_t test;
 			VectorCopy(self->s.v.origin, test);

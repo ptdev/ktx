@@ -190,6 +190,7 @@ void SP_worldspawn(void)
 	}
 
 	world->classname = "worldspawn";
+	RandomSpawnReset();
 	InitBodyQue();
 
 	if (!Q_stricmp(self->model, "maps/e1m8.bsp"))
@@ -780,6 +781,7 @@ void FirstFrame(void)
 	RegisterCvar("_k_last_cycle_map");  // internal usage, name of last map in map cycle,
 										// so we can back to map cycle if someone voted for map not in map cycle
 	RegisterCvar("_k_worldspawns"); // internal usage, count of maps server spawned
+	RegisterCvar("_k_spw_default"); // internal usage, configured default respawn mode
 	RegisterCvar("_k_pow_last");  // internal usage, k_pow from last map
 
 	RegisterCvar("_k_nospecs");  // internal usage, will reject spectators connection
@@ -854,6 +856,13 @@ void FirstFrame(void)
 	RegisterCvar("k_overtime");
 	RegisterCvar("k_exttime");
 	RegisterCvar("k_spw");
+	RegisterCvarEx("k_spw_rnd_min_points", "8");
+	RegisterCvarEx("k_spw_rnd_target_count", "0");
+	RegisterCvarEx("k_spw_rnd_target_scale", "4");
+	RegisterCvarEx("k_spw_rnd_attempts_per_point", "96");
+	RegisterCvarEx("k_spw_rnd_min_distance", "48");
+	RegisterCvarEx("k_spw_rnd_area_mode", "2");
+	RegisterCvarEx("k_spw_rnd_spread", "2");
 	RegisterCvar("k_spawnicide");
 	RegisterCvar("k_lockmin");
 	RegisterCvar("k_lockmax");
@@ -1111,6 +1120,7 @@ void FirstFrame(void)
 
 	// do not precache models if CTF is not really allowed
 	k_ctf_custom_models = cvar("k_ctf_custom_models") && (k_allowed_free_modes & UM_CTF);
+	cvar_fset("_k_spw_default", cvar("k_spw"));
 
 // use k_defmode or reuse last mode from _k_last_xonx
 	cvar_fset("_k_worldspawns", (int)cvar("_k_worldspawns") + 1);

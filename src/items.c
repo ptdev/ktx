@@ -3011,7 +3011,7 @@ void Spawn_SpawnPoints(char *classname, int effects)
 
 void ShowSpawnPoints(void)
 {
-	Spawn_SpawnPoints("info_player_deathmatch", cvar("k_spm_glow") ? ( EF_GREEN | EF_RED) : 0);
+	Spawn_SpawnPoints(ActiveDeathmatchSpawnClassname(), cvar("k_spm_glow") ? ( EF_GREEN | EF_RED) : 0);
 
 	if (isCTF())
 	{

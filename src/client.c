@@ -1908,7 +1908,7 @@ void PutClientInServer(void)
 		}
 		else
 		{
-			spot = SelectSpawnPoint("info_player_deathmatch");
+			spot = SelectDeathmatchSpawnPoint();
 		}
 	}
 	else

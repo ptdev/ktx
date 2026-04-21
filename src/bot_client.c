@@ -129,6 +129,8 @@ void BotPlayerDeathEvent(gedict_t *self)
 // Was: PutClientInServer_apply()
 void BotClientEntersEvent(gedict_t *self, gedict_t *spawn_pos)
 {
+	gedict_t *spawn_marker = spawn_pos;
+
 	self->fb.oldwaterlevel = self->fb.oldwatertype = 0;
 	self->fb.desired_angle[0] = self->s.v.angles[0];
 	self->fb.desired_angle[1] = self->s.v.angles[1];
@@ -138,7 +140,15 @@ void BotClientEntersEvent(gedict_t *self, gedict_t *spawn_pos)
 	self->fb.last_rndaim_time = 0;
 	self->fb.wiggle_run_dir = 0;
 
-	SetMarker(self, spawn_pos);
+	// Authored DM spawns are converted into Frogbot markers at map-load time,
+	// but random surface spawns are lightweight runtime entities with no pathing
+	// data. Anchor bots to the nearest real marker in that case.
+	if (!spawn_marker || !spawn_marker->fb.fl_marker)
+	{
+		spawn_marker = LocateMarker(self->s.v.origin);
+	}
+
+	SetMarker(self, spawn_marker);
 
 	self->fb.arrow = 0;
 	ClearLookObject(self);

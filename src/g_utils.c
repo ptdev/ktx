@@ -2679,6 +2679,9 @@ char* respawn_model_name(int mdl_num)
 		case 4:
 			return "KTX2 respawns";
 
+		case 5:
+			return "Random surface respawns";
+
 		default:
 			return "!Unknown!";
 	}
@@ -2705,6 +2708,9 @@ char* respawn_model_name_short(int mdl_num)
 
 		case 4:
 			return "KT2";
+
+		case 5:
+			return "RND";
 
 		default:
 			return "???";
